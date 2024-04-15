@@ -1,37 +1,38 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import AddForm from './AddForm';
+import Backdrop from '../UI/Backdrop/Backdrop';
+import classes from './BookDetails.module.css';
 
-const detailContainer = document.getElementById('details-root')
 
-const BookDetails = ({book, onClose}) => {
+const BookDetails = ({ book, onClose }) => {
     const [showEdit, setShowEdit] = useState(false);
 
     const showEditHandler = () => {
         setShowEdit(true);
     }
 
-     //close add form
-     const closeEditHandler = () => {
+    //close add form
+    const closeEditHandler = () => {
         setShowEdit(false);
     }
     return (
-        ReactDOM.createPortal(
-        <div>
-            {showEdit? <AddForm book={book} onClose={closeEditHandler}/> :
-            <div>
-            <p>Book Name: {book.bookName}</p>
-            <p>Price: {book.price}</p>
-            <p>Category: {book.category}</p>
-            <p>Description: {book.desc}</p>
-            </div>}
-            
-            <div>
-                <button onClick={showEditHandler}>edit</button>
-                <button onClick={() => {onClose()}}>Back</button>
+        <Backdrop>
+            <div className={classes.details}>
+                {showEdit ? <AddForm book={book} onClose={closeEditHandler} /> :
+                    <div>
+                        <p>Book Name: <span>{book.bookName}</span></p>
+                        <p>Price: <span className={classes.price}>{book.price}</span></p>
+                        <p>Category: <span>{book.category}</span></p>
+                        <p>Description: <br /><span>{book.desc}</span></p>
+                    </div>}
+
+                <div className={classes.btns}>
+                    <button onClick={showEditHandler}>Edit</button>
+                    <button onClick={() => { onClose() }}>Back</button>
+                </div>
             </div>
-        </div>
-        , detailContainer)
+        </Backdrop>
+
     );
 };
 

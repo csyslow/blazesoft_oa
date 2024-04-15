@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook, editBook } from '../store/bookSlice';
-import ReactDOM from 'react-dom';
 import Backdrop from '../UI/Backdrop/Backdrop';
-
-const addContainer = document.getElementById('add-root')
+import classes from './AddForm.module.css';
 
 const AddForm = (props) => {
 
@@ -47,15 +45,16 @@ const AddForm = (props) => {
     }
     return (
             <Backdrop>
-                <div>
+                <div className={classes.addForm}>
                     Book Name:<input type="text" name="" id="" onChange={bookNameChangeHandler} value={inputData.bookName} />
                     <br />
                     Price: <input type="text" onChange={priceChangeHandler} value={inputData.price} />
                     <br />
                     Category: <input type="text" onChange={categoryChangeHandler} value={inputData.category} />
                     <br />
-                    Description: <input type="text" onChange={descChangeHandler} value={inputData.desc} />
-                    <div>
+                    Description<textarea class="textarea-input" rows="4" cols="50" onChange={descChangeHandler} value={inputData.desc}></textarea>
+
+                    <div className={classes.btns}>
                         <button onClick={props.book ? editBookHandler : addBookHandler}>Add</button>
                         <button onClick={() => { props.onClose() }}>Cancel</button>
                     </div>

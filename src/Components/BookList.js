@@ -22,7 +22,7 @@ const BookList = () => {
     }
     return (
         <div className={classes.bookList}>
-           <button onClick={showAddHandler}>Add Book</button>
+           <button className={classes.addBtn} onClick={showAddHandler}>Add Book</button>
             { showAdd && <AddForm onClose={closeAddHandler}/>}
             <table className={classes.bookTable}>
                 <thead>

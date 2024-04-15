@@ -26,7 +26,7 @@ const Book = (props) => {
     return (
         <>
             <tr>
-                <td onClick={showBookDetailsHandler}>{props.book.bookName}</td>
+                <td className={classes.bookName} onClick={showBookDetailsHandler}>{props.book.bookName}</td>
                 <td className={classes.price}>{props.book.price}</td>
                 <td>{props.book.category}</td>
                 <td><button onClick={deleteBookHandler}>Delete Book</button></td>
